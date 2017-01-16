@@ -49,7 +49,7 @@ SB = 10;
 # to send such a date, we need fourier reverse transform calcuate the waveform in domain by np.sinc function
 
 # before send data, we need to define AM symbol rate (typically < subchannel Bandwidth).
-SR = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate upto 50
+SR = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate upto 50。here we set symbol rate is 10Hz while Bandwidth is 50Hz, we has 5 times oversampling.  
 
 # let's think about the C0
 # we the fourier tansfom rect(t) => sinc(v), to send data lets contruct waveform for time domain.
