@@ -26,13 +26,15 @@ def rect(x):
     return list(rect_(x))
 
 # Number of samplepoints
-N = 8000
+N = 4000
 # sample spacing
 T = 1.0 / 800.0
+# sample Frequency
+F = 1.0/T
 x = np.linspace(0.0, N*T, N)
 
-xf = np.linspace(0.0,800.0,N)
-yf = mirr(np.sinc(xf))
+xf = np.linspace(0.0,F,N)
+yf = mirr(np.sinc(xf)*F)
 
 y=ifft(yf);
 
