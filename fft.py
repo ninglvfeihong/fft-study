@@ -43,8 +43,9 @@ SB = 10;
 # Thus, typically, each subchannel can only has a symbol rate <S/20 50 Hz
 # LET suppose employ AM modulation with M=4 (0,1,2,3 two bits / symbol) in each subchannels
 # Let's suppose we want send a 2 in C0 and zero in other subchannels
+# Let's test to send data below in more than one subchannel simultaneously!!!!!!!!
 # | C0 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 |
-# | 2  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |
+# | 0  | 1  | 0  | 3  | 0  | 0  | 2  | 0  | 0  | 0  |
 
 # to send such a date, we need fourier reverse transform calcuate the waveform in domain by np.sinc function
 
@@ -80,7 +81,7 @@ SR = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate up
 x = np.linspace(0.0, N*T, N)
 
 xf = np.linspace(0.0,S,N)
-yf = mirr(2/SR*np.sinc(xf/SR-9)*S)
+yf = mirr(1/SR*np.sinc(xf/SR-1)*S + 3/SR*np.sinc(xf/SR-3)*S + 2/SR*np.sinc(xf/SR-6)*S);
 
 y=ifft(yf);
 
