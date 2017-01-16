@@ -26,7 +26,7 @@ def rect(x):
     return list(rect_(x))
 
 # Number of samplepoints
-N = 22 #0.021seconds sample. only one symbol. to avoid  inter-symbol interference (ISI) . Add 0.002 s guard period for one symbol
+N = 105 #0.105seconds sample. only one symbol. to avoid  inter-symbol interference (ISI) . Add 0.005 s guard period for one symbol
 # sample spacing
 T = 1.0 / 1000.0 # 1 kSPS
 # sample Rate
@@ -49,7 +49,7 @@ SB = 10;
 # to send such a date, we need fourier reverse transform calcuate the waveform in domain by np.sinc function
 
 # before send data, we need to define AM symbol rate (typically < subchannel Bandwidth).
-SR = S / 2 / SB / 1; #10Hz. just for easy demo, we can defind the symbol rate upto 50
+SR = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate upto 50
 
 # let's think about the C0
 # we the fourier tansfom rect(t) => sinc(v), to send data lets contruct waveform for time domain.
