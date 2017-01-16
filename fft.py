@@ -34,7 +34,7 @@ F = 1.0/T
 x = np.linspace(0.0, N*T, N)
 
 xf = np.linspace(0.0,F,N)
-yf = mirr(np.sinc(xf)*F)
+yf = mirr(np.sinc(xf-20)*F)
 
 y=ifft(yf);
 
