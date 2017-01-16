@@ -26,7 +26,7 @@ def rect(x):
     return list(rect_(x))
 
 # Number of samplepoints
-N = 400 #4 seconds sample
+N = 400 #0.4 seconds sample
 # sample spacing
 T = 1.0 / 1000.0 # 1 kSPS
 # sample Rate
@@ -49,18 +49,19 @@ SB = 10;
 # to send such a date, we need fourier reverse transform calcuate the waveform in domain by np.sinc function
 
 # before send data, we need to define AM symbol rate (typically < subchannel Bandwidth).
-SymbolRate = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate upto 50
+SR = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol rate upto 50
 
 # let's think about the C0
 # we the fourier tansfom rect(t) => sinc(v), to send data lets contruct waveform for time domain.
 # for fourier tansform, f(at) => 1/abs(a)*g(v/a).
 # because of the SymbolRate. we can get a hihg volate may last for minium 1/10 second.
 # thus function of the singnal for one symbole is: rect(10t)
-# thus the fourier transform shouuld be.   1/10*sinc(t/10)
+# thus the fourier transform shouuld be.   1/10*sinc(t/10) . In other word: 1/SR*sinc(t/SR)
 
 # for other subchannel C1,C2,C3 ... we can easily get ransform:
 # |  C0            |        C1          |        C2          |        C3          | ...|
 # | 1/10*sinc(v/10)| 1/10*sinc(v/10-1), | 1/10*sinc(v/10-2), | 1/10*sinc(v/10-3), | ...|
+# | 1/SR*sinc(v/SR)| 1/SR*sinc(v/SR-1), | 1/SR*sinc(v/SR-2), | 1/SR*sinc(v/SR-3), | ...|
 
 # luckly sinc(v) is Orthogonal for every 1.0 period.
 # 正交就是两函数内积为零。从之前学的量子论来说，如果一堆函数的集合中，任何一个函数除了和他的共轭函数内机不为零。。。关系，而且这个函数可以叠加成其他任何函数，这个函数集合就是个完整的态空间。
@@ -70,14 +71,16 @@ SymbolRate = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol
 # 所以，对于正交的这10个sinc波形，我们可以把这10 这样的不同幅值的sinc波形叠加起来得到一个波形，然后还能唯一还原出这10个sinc波形。
 # 这样我们就能用不同sinc函数幅值来传输信息，即AM：调制sinc的的幅值。
 
-
-
+# we define symbol in frequency domain with M=4 (0,1,2,3) here, for C0:
+# |        0     |       1         |       2         |       3         |
+# | 0*sinc(v/10) | 1/10*sinc(v/10) | 2/10*sinc(v/10) | 3/10*sinc(v/10) |
+# | 0*sinc(v/SR) | 1/SR*sinc(v/SR) | 2/SR*sinc(v/SR) | 3/SR*sinc(v/SR) |
 
 
 x = np.linspace(0.0, N*T, N)
 
 xf = np.linspace(0.0,S,N)
-yf = mirr(np.sinc(xf-20)*S)
+yf = mirr(2/SR*np.sinc(xf/SR)*S)
 
 y=ifft(yf);
 
@@ -90,7 +93,7 @@ fig2d.show();
 #time domian just real part
 fig2df=plt.figure()
 ax2f = fig2df.add_subplot(111);
-ax2f.plot(x,y);
+ax2f.plot(x,np.real(y));
 fig2df.show();
 
 #time domain display real and imag part
