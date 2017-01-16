@@ -68,7 +68,7 @@ SymbolRate = S / 2 / SB / 5; #10Hz. just for easy demo, we can defind the symbol
 # 在这里，我们不需要连续的正交。只需要C0,C1,C2 ... C9 里的sinc函数正交。就能把这些sinc函数叠加后的曲线唯一得再拆解（还原）成基本sinc的形式，切每个sinc的系数（coefficient）唯一。这样就能用sinc域的coefficient来标记一个合成波，从而传输数据。OFDM的核心。
 # thus we can Add 10 sinc waveform togther and then disassemble them to get the weight of each sinc function.
 # 所以，对于正交的这10个sinc波形，我们可以把这10 这样的不同幅值的sinc波形叠加起来得到一个波形，然后还能唯一还原出这10个sinc波形。
-# 这样我们就能用不同sinc函数幅值来传输信息，即AM：调制sinc的的幅值，也是调制每个信道时域幅值。
+# 这样我们就能用不同sinc函数幅值来传输信息，即AM：调制sinc的的幅值。
 
 
 
