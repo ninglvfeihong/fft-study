@@ -29,12 +29,17 @@ def rect(x):
 N = 4000 #4 seconds sample
 # sample spacing
 T = 1.0 / 1000.0 # 1 kSPS
-# sample Frequency
-F = 1.0/T
+# sample Rate
+S = 1.0/T
+
+#lets try OFDM modulation
+#Because the smapling rate is F, we get bandwidth < S/2. the signal cannot changed to faster than S/2
+# typically, 1 sybol may include 1,2,4...bits, while the symbol rate should < S/2
+
 x = np.linspace(0.0, N*T, N)
 
-xf = np.linspace(0.0,F,N)
-yf = mirr(np.sinc(xf-F/2)*F)
+xf = np.linspace(0.0,S,N)
+yf = mirr(np.sinc(xf-20)*S)
 
 y=ifft(yf);
 
