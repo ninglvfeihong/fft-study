@@ -26,7 +26,7 @@ def rect(x):
     return list(rect_(x))
 
 # Number of samplepoints
-N = 400 #0.4 seconds sample
+N = 100 #0.1 seconds sample. only one symbol
 # sample spacing
 T = 1.0 / 1000.0 # 1 kSPS
 # sample Rate
