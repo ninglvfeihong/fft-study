@@ -26,7 +26,7 @@ def rect(x):
     return list(rect_(x))
 
 # Number of samplepoints
-N = 100 #0.1 seconds sample. only one symbol
+N = 105 #0.105seconds sample. only one symbol. to avoid  inter-symbol interference (ISI) . Add 0.005 s guard period for one symbol
 # sample spacing
 T = 1.0 / 1000.0 # 1 kSPS
 # sample Rate
