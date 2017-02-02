@@ -32,6 +32,10 @@ y = mirr(np.cos(np.pi*x)*rect(x))
 yf = fft(y)
 xf = x
 
+#yf = yf*rect(x/4)+yf*rect((x-100)/4)
+#y=ifft(yf);
+yf = np.log10(np.abs(yf)**2)*10
+
 
 #frequence domain
 fig2d=plt.figure()
