@@ -60,6 +60,7 @@ fig2d.show();
 #time domian just real part
 fig2df=plt.figure()
 ax2f = fig2df.add_subplot(111);
+ax2f.axis([0,100,-2,2])
 ax2f.plot(x,np.real(y));
 ax2f.plot(x,np.real(y2));
 fig2df.show();
