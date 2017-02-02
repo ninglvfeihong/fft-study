@@ -31,9 +31,11 @@ N=10000;
 
 x = np.linspace(0.0, N*T, N)
 y = 0.0*x;
-for i in range(1,99):
+for i in range(0,int(N*T)):
     if np.random.rand()<0.5 :
-        y = y+ rect(x-i)
+        y = y + np.sin(np.pi*(x-i))*rect(x-i-0.5)
+    else:
+        y = y - np.sin(np.pi*(x-i))*rect(x-i-0.5)
 
 
 yf = fft(y)
