@@ -26,15 +26,17 @@ def mirr(y):
 def rect(x):
     return list(rect_(x))
 
+T=1.0/100;
+N=10000;
 
-x = np.linspace(0.0, 100, 10000)
+x = np.linspace(0.0, N*T, N)
 y = mirr(np.cos(np.pi*x)*rect(x))
 yf = fft(y)
-xf = x
+xf = np.linspace(0.0, 1.0/T,N)
 
 #yf = yf*rect(x/4)+yf*rect((x-100)/4)
 #y=ifft(yf);
-yf = np.log10(np.abs(yf)**2)*10
+#yf = np.log10(np.abs(yf)**2)*10
 
 
 #frequence domain
