@@ -25,7 +25,7 @@ def rect(x):
     return np.array(list(rect_(x)))
 
 T=1.0/10;
-N=10000;
+N=1000
 
 #chipcodes=[[1, 0, 0, 1], [0, 0, 1, 1], [1, 1, 0, 1], [0, 0, 1, 0]];
 chipcodes=[
@@ -94,11 +94,12 @@ fig2df=plt.figure()
 ax2f = fig2df.add_subplot(111);
 #ax2f.axis([0,100,-2,2])
 ax2f.plot(x,np.real(y));
+ax2f.plot(x,np.imag(y));
 ax2f.plot(x,np.real(y2));
 fig2df.show();
 
 #time domain display real and imag part
-#fig3df=plt.figure()
-#ax3f = fig3df.add_subplot(111,projection="3d");
-#ax3f.plot(x,np.imag(y),np.real(y));
-#fig3df.show();
+fig3df=plt.figure()
+ax3f = fig3df.add_subplot(111,projection="3d");
+ax3f.plot(x,np.imag(y),np.real(y));
+fig3df.show();
