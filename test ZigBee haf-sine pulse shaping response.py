@@ -26,19 +26,31 @@ def mirr(y):
 def rect(x):
     return np.array(list(rect_(x)))
 
-T=1.0/100;
-N=10000;
+T=1.0/10;
+N=100000;
 
 x = np.linspace(0.0, N*T, N)
 y = 0.0*x;
 y2 = 0.0*x;
-for i in range(0,int(N*T)):
+for i in range(0,int(N*T/100)):
     if np.random.rand()<0.5 :
         y = y + np.sin(np.pi*(x-i))*rect(x-i-0.5)
         y2 = y2 + rect(x-i-0.5)
     else:
         y = y - np.sin(np.pi*(x-i))*rect(x-i-0.5)
         y2 = y2 - rect(x-i-0.5)
+
+yy =0.0*x;
+yy2 =0.0*x;
+for i in range(0,int(N-N/60),int(N/60)):
+    i= i+ int(0.4*np.random.rand() * N/60);
+    for j in range(0,int(N/100)):
+        yy[i+j] = yy[i+j] + y[j]
+        yy2[i+j] = yy2[i+j] + y2[j]
+    
+  
+y=yy;
+y2=yy2;
 
 yf = fft(y)
 yf2 = fft(y2)
@@ -54,13 +66,13 @@ yf2 = np.log10(np.abs(yf2)**2)*10
 fig2d=plt.figure()
 ax2 = fig2d.add_subplot(111);
 ax2.plot(xf,yf);
-ax2.plot(xf,yf2);
+#ax2.plot(xf,yf2);
 fig2d.show();
 
 #time domian just real part
 fig2df=plt.figure()
 ax2f = fig2df.add_subplot(111);
-ax2f.axis([0,100,-2,2])
+#ax2f.axis([0,100,-2,2])
 ax2f.plot(x,np.real(y));
 ax2f.plot(x,np.real(y2));
 fig2df.show();
