@@ -61,17 +61,17 @@ chipcodes=[
 x = np.linspace(0.0, N*T, N)
 y = 0.0*x;
 y2 = 0.0*x;
-for i in range(0,int(N*T),32):
+for i in range(0,int(N*T),16):
     symbol = int(np.random.rand()*16)
     j=0;
     for chip in chipcodes[symbol]:
         j=j+1;
         if chip ==1 :
-            y = y + np.sin(np.pi*(x-i-j))*rect(x-i-j-0.5)
-            y2 = y2 + rect(x-i-j-0.5)
+            y = y + np.sin(np.pi*(x-i-j/2))*rect(x-i-j/2-0.5)*((j+1)%2+j%2*1j)
+            #y2 = y2 + rect(x-i-j-0.5)
         else:
-            y = y - np.sin(np.pi*(x-i-j))*rect(x-i-j-0.5)
-            y2 = y2 - rect(x-i-j-0.5)
+            y = y - np.sin(np.pi*(x-i-j/2))*rect(x-i-j/2-0.5)*((j+1)%2+j%2*1j)
+            #y2 = y2 - rect(x-i-j-0.5)
 
 
 yf = fft(y)
