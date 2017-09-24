@@ -37,9 +37,9 @@ for SP in SP_L:
         return math.sqrt((SP[0]-CP[0])**2 + (SP[1]-CP[1])**2) 
 
     for i in range(1,130):
-        for j in range(-20,20):
+        for j in range(-2,2):
             CP = (0,j)
-            c = plt.Circle(CP, i+getDST()%1, color='black',linewidth=0.1,fill=False)
+            c = plt.Circle(CP, i+getDST()%1, color='black',linewidth=1,fill=False)
             ax.add_artist(c)
             
     ax.set_xlim((-100, 100))
