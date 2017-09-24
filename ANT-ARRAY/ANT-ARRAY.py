@@ -4,7 +4,7 @@ import math
 
 fig, ax = plt.subplots() # note we must use plt.subplots, not plt.subplot
 #strangth one point SP;
-SP = (70,0)
+SP = (0,70)
 c = plt.Circle(SP, 1, color='red')
 ax.add_artist(c)
 #circle center point
@@ -22,4 +22,6 @@ for i in range(1,130):
         
 ax.set_xlim((-100, 100))
 ax.set_ylim((-120, 120))
+#fig.set_size_inches(20, 20)
 plt.show()
+#fig.savefig('plotcircles.png')
